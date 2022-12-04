@@ -63,6 +63,6 @@ def calc_match_score(matches):
         my_score += score_round(round)
     return my_score
 
-starting_list = get_data('day_2_sample.txt')
+starting_list = get_data('day_2.txt')
 #print(starting_list)
 print(calc_match_score(starting_list))
