@@ -51,12 +51,12 @@ def sum_dict(dict_list):
         temp_sum += dict_list[elf]
     return temp_sum
 
-starting_list = get_data('day_1_sample.txt')
+starting_list = get_data('day_1.txt')
 calorie_dictionary = list_to_dict(starting_list)
 best_elf, most_calories = find_most_calories(calorie_dictionary)
 print(best_elf, ' ', most_calories)
 sorted_elves = sort_by_calories(calorie_dictionary)
-print(sorted_elves)
+#print(sorted_elves)
 most_elves = return_last_items(sorted_elves, 3)
 group_calories = sum_dict(most_elves)
 print(group_calories)
