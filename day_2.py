@@ -20,6 +20,31 @@ def score_round(round_choices):
     player_1 = round_choices[0]
     player_1_score = 0
     player_2 = round_choices[1]
+    player_2_state = 0
+    player_2_score = 0
+    for score in MARKING:
+        if player_1 in MARKING[score]:
+            player_1_score = score
+        if player_2 in MARKING[score]:
+            player_2_state = score
+    if player_2_state == 3:
+        if player_1_score < 3:
+            player_2_score += 6 + player_1_score + 1
+        else:
+            player_2_score += 7
+    elif player_2_state == 2:
+        player_2_score = 3 + player_1_score
+    else:
+        if player_1_score > 1:
+            player_2_score = player_1_score - 1
+        else:
+            player_2_score = 3
+    return player_2_score
+
+def old_round_scoring(round_choices):
+    player_1 = round_choices[0]
+    player_1_score = 0
+    player_2 = round_choices[1]
     player_2_score = 0
     for score in MARKING:
         if player_1 in MARKING[score]:
@@ -38,6 +63,6 @@ def calc_match_score(matches):
         my_score += score_round(round)
     return my_score
 
-starting_list = get_data('day_2.txt')
+starting_list = get_data('day_2_sample.txt')
 #print(starting_list)
 print(calc_match_score(starting_list))
