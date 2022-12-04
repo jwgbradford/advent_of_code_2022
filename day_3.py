@@ -44,6 +44,6 @@ def find_badges(split_lists):
                 break
     return calc_score(triples)
 
-starting_list = get_data('day_3_sample.txt')
+starting_list = get_data('day_3.txt')
 duplicates = find_duplicates(starting_list)
 print(find_badges(starting_list))
