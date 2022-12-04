@@ -7,7 +7,8 @@ def read_file(file):
 
 def get_data(file):
     file_data = read_file(file)
-    data_list = [[backpack[:len(backpack)//2], backpack[len(backpack)//2:]] for backpack in file_data.split("\n")]
+    #data_list = [[backpack[:len(backpack)//2], backpack[len(backpack)//2:]] for backpack in file_data.split("\n")]
+    data_list = [backpack for backpack in file_data.split("\n")]
     return data_list
 
 def find_duplicates(split_lists):
@@ -28,6 +29,21 @@ def calc_score(duplicate_list):
             score += ord(item) - 38
     return score
 
-starting_list = get_data('day_3.txt')
+def find_badges(split_lists):
+    grouped_list = []
+    triples = []
+    for i in range(0, len(split_lists), 3):
+        temp = []
+        for j in range(0, 3):
+            temp.append(split_lists[i + j])
+        grouped_list.append(temp)
+    for triple in grouped_list:
+        for item in triple[0]:
+            if item in triple[1] and item in triple[2]:
+                triples.append(item)
+                break
+    return calc_score(triples)
+
+starting_list = get_data('day_3_sample.txt')
 duplicates = find_duplicates(starting_list)
-print(calc_score(duplicates))
+print(find_badges(starting_list))
