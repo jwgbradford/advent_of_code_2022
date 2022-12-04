@@ -7,3 +7,4 @@ Day 2 - Rock, Paper, Scissors...
 
 Day 3 - actually easier than I thought - bit of list manipulation
 
+Day 4 - bit tricky spliting the data, but otherwise simple comparisons, probably not the most efficient solution
