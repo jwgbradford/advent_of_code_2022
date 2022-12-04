@@ -43,6 +43,6 @@ def any_overlap(data_list):
             overlap += 1
     return overlap
 
-list_of_data = get_data('day_4_sample.txt')
+list_of_data = get_data('day_4.txt')
 print(nested_pairs(list_of_data))
 print(any_overlap(list_of_data))
