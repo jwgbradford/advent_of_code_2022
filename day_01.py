@@ -32,7 +32,7 @@ def find_most_calories(dict_list):
             best_elf = elf
     return best_elf, most_calories
 
-starting_list = get_data('day_1_sample.txt')
+starting_list = get_data('day_1.txt')
 calorie_dictionary = list_to_dict(starting_list)
 best_elf, most_calories = find_most_calories(calorie_dictionary)
 print(best_elf, ' ', most_calories)
