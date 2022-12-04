@@ -28,6 +28,6 @@ def calc_score(duplicate_list):
             score += ord(item) - 38
     return score
 
-starting_list = get_data('day_3_sample.txt')
+starting_list = get_data('day_3.txt')
 duplicates = find_duplicates(starting_list)
 print(calc_score(duplicates))
