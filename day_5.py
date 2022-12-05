@@ -33,14 +33,23 @@ def list_to_matrix(data_list):
     return box_stack
 
 def shuffle_boxes(stack, orders):
+    # redo to maintain order
     for order in orders:
         order_elements = order.split(" ")
+        item = stack[int(order_elements[3]) - 1][:int(order_elements[1])]
+        item.reverse()
+        for box in item:
+            stack[int(order_elements[3]) - 1].pop(0)
+            stack[int(order_elements[5]) - 1].insert(0, box)
+        '''
         for _ in range(int(order_elements[1])):
             for item in stack[int(order_elements[3]) - 1]:
                 if item:
                     stack[int(order_elements[3]) - 1].pop(0)
                     stack[int(order_elements[5]) - 1].insert(0, item)
                     break
+                '''
+    print(stack)
     return stack
 
 def top_boxes(stack):
