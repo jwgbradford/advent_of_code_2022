@@ -49,7 +49,7 @@ def top_boxes(stack):
         top_list = top_list + column[0]
     print(top_list)
 
-boxes_list, orders_list = get_data('day_5_sample.txt')
+boxes_list, orders_list = get_data('day_5.txt')
 box_stack = list_to_matrix(boxes_list)
 shuffled_stack = shuffle_boxes(box_stack, orders_list)
 top_boxes(shuffled_stack)
