@@ -36,6 +36,7 @@ def shuffle_boxes(stack, orders):
     # redo to maintain order
     for order in orders:
         order_elements = order.split(" ")
+        '''
         item = stack[int(order_elements[3]) - 1][:int(order_elements[1])]
         item.reverse()
         for box in item:
@@ -48,8 +49,6 @@ def shuffle_boxes(stack, orders):
                     stack[int(order_elements[3]) - 1].pop(0)
                     stack[int(order_elements[5]) - 1].insert(0, item)
                     break
-                '''
-    print(stack)
     return stack
 
 def top_boxes(stack):

@@ -60,9 +60,10 @@ def old_round_scoring(round_choices):
 def calc_match_score(matches):
     my_score = 0
     for round in matches:
-        my_score += score_round(round)
+        my_score += old_round_scoring(round)
     return my_score
 
 starting_list = get_data('day_2.txt')
 #print(starting_list)
+print(old_round_scoring(starting_list))
 print(calc_match_score(starting_list))
