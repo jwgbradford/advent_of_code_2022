@@ -30,10 +30,42 @@ def get_data(file):
     data_list = file_data.split("\n")
     return data_list
 
+def cd(pointer, dir, current_disc):
+    if dir == '/':
+        pointer = ['/']
+    elif dir == '..':
+        del pointer[-2:]
+    else:
+        pointer.append('dirs')
+        dirs = current_disc.getval(pointer)
+        if dir in dirs.keys():
+            pointer.append(dir)
+        else:
+            pointer.append(dir)
+            current_disc.setval(pointer, {
+                'size' : 0,
+                'dirs': {},
+                'files' : {}
+            }
+            )
+    return pointer, current_disc
+
+blank_disc = {
+    '/' : {
+        'size' : 0,
+        'dirs': {},
+        'files' : {}
+    }
+}
+my_disc = DynamicAccessNestedDict(blank_disc)
 raw_disc_data = get_data('day_7_sample.txt')
-print(raw_disc_data)
-
-
+pointer = ['/']
+for entry in raw_disc_data:
+    if entry[0] == '$': # cmd
+        cmd = entry[2:].split(" ")
+        if cmd[0] == 'cd':
+            pointer, my_disc = cd(pointer, cmd[1], my_disc)
+print(my_disc.data)
 # random code from stackoverflow
 dct = {
     '/' : {
@@ -62,5 +94,3 @@ d = DynamicAccessNestedDict(dct)
 print(d.getval(["/", "size"]))
 # Set some new values
 d.setval(["/", "dirs", "a", "files", "e.log"], 222)
-
-print(d.data)
