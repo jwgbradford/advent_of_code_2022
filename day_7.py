@@ -50,6 +50,18 @@ def cd(pointer, dir, current_disc):
             )
     return pointer, current_disc
 
+def ls(temp_pointer, current_disc, data):
+    if data[:3] == 'dir':
+        temp_pointer.append('dirs')
+        temp_pointer.append(data[4:])
+        current_disc.setval(temp_pointer, {
+                'size' : 0,
+                'dirs': {},
+                'files' : {}
+            }
+            )
+    return current_disc
+
 blank_disc = {
     '/' : {
         'size' : 0,
@@ -63,8 +75,11 @@ pointer = ['/']
 for entry in raw_disc_data:
     if entry[0] == '$': # cmd
         cmd = entry[2:].split(" ")
-        if cmd[0] == 'cd':
-            pointer, my_disc = cd(pointer, cmd[1], my_disc)
+    if cmd[0] == 'cd':
+        pointer, my_disc = cd(pointer, cmd[1], my_disc)
+    elif cmd[0] == 'ls' and entry != '$ ls':
+        my_disc = ls(pointer, my_disc, entry)
+
 print(my_disc.data)
 # random code from stackoverflow
 dct = {
@@ -91,6 +106,6 @@ dct = {
 
 d = DynamicAccessNestedDict(dct)
 #assert d.getval(["label"]) == "A"
-print(d.getval(["/", "size"]))
+assert d.getval(["/", "size"]) == 120
 # Set some new values
 d.setval(["/", "dirs", "a", "files", "e.log"], 222)
