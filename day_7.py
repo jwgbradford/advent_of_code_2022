@@ -66,8 +66,13 @@ def ls(temp_pointer, current_disc, data):
     else:
         temp_pointer.append('files')
         temp_pointer.append(list_entry[1])
-        current_disc.setval(temp_pointer, list_entry[0])
+        current_disc.setval(temp_pointer, int(list_entry[0]))
         del temp_pointer[-1]
+        del temp_pointer[-1]
+        temp_pointer.append('size')
+        dir_size = current_disc.getval(temp_pointer)
+        dir_size += int(list_entry[0])
+        current_disc.setval(temp_pointer, dir_size)
         del temp_pointer[-1]
     return current_disc
 
@@ -87,9 +92,7 @@ for entry in raw_disc_data:
     if cmd[0] == 'cd':
         pointer, my_disc = cd(pointer, cmd[1], my_disc)
     elif cmd[0] == 'ls' and entry != '$ ls':
-        print('before ls', my_disc.data)
         my_disc = ls(pointer, my_disc, entry)
-        input(my_disc.data)
 
 print(my_disc.data)
 # random code from stackoverflow
